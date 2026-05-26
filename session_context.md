@@ -1,6 +1,6 @@
 # Session Context
 
-> 最后更新：2026-05-27 — **第 4 章：o.cmd/oo.cmd ✅ session.id ✅ 重连检测 ✅ eye.py 开机自启 ✅ 双Session能力**
+> 最后更新：2026-05-27 — **第 4 章完成：双Session能力 ✅ GitHub弹药库 ✅ WSL✅ opa退役 ✅**
 
 ## 当前状态
 

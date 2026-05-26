@@ -39,7 +39,7 @@ Level 4: 档案库 → _lessons_archive.md（不自动读，搜索触发）
 - [x] `_startup_checklist.md` 创建 — 神之眼事前校验（2026-05-26）
 - [x] relay 系统已交接（relay_handover.md），不再参与维护
 
-**v2 迭代中（2026-05-26）：**
+**v2 迭代中（2026-05-27）：**
 - [x] 神之眼前置化 — 从"事后评分"变成"事前校验 + 事中自问"
 - [x] 进化对话自动存档规则
 - [x] 校验清单机制（_startup_checklist.md）
@@ -47,7 +47,11 @@ Level 4: 档案库 → _lessons_archive.md（不自动读，搜索触发）
 - [x] **session.id 持久化** — 常驻 session 写 ID 到文件，o.cmd 从文件读
 - [x] **重连检测** — CLAUDE.md 启动链首判 session.id 存在/不存在
 - [x] **宪法第11条修正** — "不得起新claude.exe" → "只允许一个CLI实例"
-- [ ] 实际重生验证 — 启动校验清单能否拦住已知重复错误
+- [x] **eye.py + 开机自启** — Session 1 辅助进程，截图+exec+termread+windows
+- [x] **GitHub 仓库 opb-core** — 教育体系+工具全部版本管理
+- [x] **重启存活验证** — 系统重启后自动登录→eye.py自启→SSH→o.cmd--resume一次通过
+- [x] **WSL 配置** — 网络+DNS+proxy+sudo+venv 全部就绪
+- [x] **opa 退役** — 桌面端实例因 relay 限制不再维护，进度合并到 opb
 - [ ] 自动遗忘机制 — 验证通过的清单条目降级归档
 
 **未来方向：**

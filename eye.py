@@ -46,6 +46,84 @@ def handle_cmd(req):
             except Exception as e:
                 return {'ok': False, 'error': str(e)}
 
+        elif action == 'windows':
+            """List all visible windows in Session 1 with their titles"""
+            import subprocess
+            r = subprocess.run(['powershell', '-NoProfile', '-Command', '''
+                Get-Process | Where-Object { $_.MainWindowTitle -ne "" } |
+                Select-Object Id, ProcessName, MainWindowTitle, SessionId |
+                Format-Table -AutoSize | Out-String -Width 300
+            '''], capture_output=True, text=True, timeout=15)
+            return {'ok': True, 'stdout': r.stdout}
+
+        elif action == 'termread':
+            """Read terminal content of a given window by PID."""
+            pid = req.get('pid', 0)
+            import subprocess
+            r = subprocess.run(['powershell', '-NoProfile', '-Command', f'''
+                Add-Type @"
+                    using System;
+                    using System.Runtime.InteropServices;
+                    using System.Text;
+                    public class TermReader {{
+                        [DllImport("user32.dll")] public static extern IntPtr GetWindow(IntPtr hWnd, int uCmd);
+                        [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();
+                        [DllImport("user32.dll")] public static extern uint GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+                        [DllImport("user32.dll")] public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+                        [DllImport("kernel32.dll")] public static extern bool AttachConsole(uint dwProcessId);
+                        [DllImport("kernel32.dll")] public static extern bool GetConsoleScreenBufferInfo(IntPtr hConsoleOutput, out CONSOLE_SCREEN_BUFFER_INFO lpScreenInfo);
+                        [DllImport("kernel32.dll")] public static extern int ReadConsoleOutputCharacter(IntPtr hConsoleOutput, StringBuilder lpCharacter, uint nLength, uint dwReadCoord, out uint lpNumberOfCharsRead);
+                        [DllImport("kernel32.dll")] public static extern IntPtr GetStdHandle(uint nStdHandle);
+                        [DllImport("kernel32.dll")] public static extern bool FreeConsole();
+                        public const uint STD_OUTPUT_HANDLE = 0xFFFFFFF5;
+                        public struct COORD {{ public short X; public short Y; }}
+                        public struct SMALL_RECT {{ public short Left; public short Top; public short Right; public short Bottom; }}
+                        public struct CONSOLE_SCREEN_BUFFER_INFO {{
+                            public COORD Size; public COORD CursorPosition; public ushort Attributes;
+                            public SMALL_RECT Window; public COORD MaximumWindowSize;
+                        }}
+                        public static string ReadConsole(uint pid) {{
+                            if (!AttachConsole(pid)) return "ATTACH_FAIL";
+                            var hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+                            CONSOLE_SCREEN_BUFFER_INFO info;
+                            if (!GetConsoleScreenBufferInfo(hOut, out info)) {{ FreeConsole(); return "BUFFER_INFO_FAIL"; }}
+                            int w = info.Window.Right - info.Window.Left + 1;
+                            int h = info.Window.Bottom - info.Window.Top + 1;
+                            var sb = new StringBuilder(w * h);
+                            uint read = 0;
+                            var coord = new COORD {{ X = info.Window.Left, Y = info.Window.Top }};
+                            ReadConsoleOutputCharacter(hOut, sb, (uint)(w * h), coord, out read);
+                            FreeConsole();
+                            string result = sb.ToString();
+                            // Reconstruct lines
+                            var lines = new System.Collections.Generic.List<string>();
+                            for (int y = 0; y < h; y++)
+                                lines.Add(result.Substring(y * w, w).TrimEnd());
+                            return string.Join("\\n", lines);
+                        }}
+                    }}
+"@
+                # If PID=0, read foreground window's process
+                `$targetPid = {pid}
+                if (`$targetPid -eq 0) {{
+                    `$hwnd = [TermReader]::GetForegroundWindow()
+                    `$pid_ = 0u
+                    [TermReader]::GetWindowThreadProcessId(`$hwnd, [ref] `$pid_)
+                    `$targetPid = `$pid_
+                }}
+                `$title = ""
+                `$hwnd2 = [TermReader]::GetForegroundWindow()
+                `$sb = New-Object System.Text.StringBuilder 256
+                [TermReader]::GetWindowText(`$hwnd2, `$sb, 256)
+                `$title = `$sb.ToString()
+                `$content = [TermReader]::ReadConsole(`$targetPid)
+                Write-Host "WINDOW: `$title"
+                Write-Host "PID: `$targetPid"
+                Write-Host "---CONTENT---"
+                Write-Host "`$content"
+            '''], capture_output=True, text=True, timeout=15)
+            return {'ok': True, 'stdout': r.stdout, 'stderr': r.stderr}
+
         elif action == 'ls':
             """List windows or processes"""
             import subprocess

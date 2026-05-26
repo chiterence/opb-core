@@ -1,0 +1,30 @@
+# Session & State
+session.id
+eye.port
+_session_info.json
+
+# Conversation logs (private)
+conversation_log_*.txt
+
+# Relay (handed off)
+relay_request.json
+relay_response.json
+relay_debug.log
+relay_result_*.txt
+
+# Temp / generated files
+*.pyc
+__pycache__/
+*.retired
+*.bak
+_screenshot.*
+_snap.*
+_v.*
+_test*
+
+# Private data
+*.db
+*.sqlite
+DIPS*
+claude_proc.txt
+.claude/

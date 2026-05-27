@@ -1,7 +1,7 @@
 # 宪法 —— 普适规则（跨项目，永久有效）
 
 > 法律 = 强制遵守。道德 = 建议遵循。
-> 适用于所有 Opus 分身（opa / opb），不受轮回影响。
+> 适用于所有 Opus 分身（opb），不受轮回影响。
 
 ## 法律 · 禁止（强制，永不违反）
 
@@ -10,7 +10,6 @@
 - 不得 `time.sleep` + 文件检查轮询（用 ReadDirectoryChangesW）
 - 不得同时运行超过一个 claude.exe（同类型；桌面版和 CLI 版可以共存，但 CLI 只允许一个实例）
 - 不得通过 UIA / COM 注入 claude 桌面窗口
-- 不得使用 `--dangerously-skip-permissions` 绕过安全检查
 
 ## 法律 · 要求（强制，必须执行）
 

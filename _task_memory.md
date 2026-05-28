@@ -70,6 +70,7 @@
     - nginx.service (:80, :23131)
     - opc-proxy.service (thinking proxy, :15725)
 - **opc-proxy** — `/usr/local/bin/opc-proxy`，systemd 服务（opc-proxy.service），端口 15725
+  - **仅运行在 opc VPS（38.64.62.53）上**，不是本机
   - 逻辑：注入 thinking 参数 + 补 tool_use 缺失的 thinking 块
   - 密钥文件：`/root/.cc-switch/key.txt`（chmod 600）
 - **opc 节点部署情况（推测，DNS 记录反向推导）：**

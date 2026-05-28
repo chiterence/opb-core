@@ -30,3 +30,4 @@ claude_proc.txt
 .claude/
 relay_forwarder.lock
 relay_tcp.lock
+.secrets

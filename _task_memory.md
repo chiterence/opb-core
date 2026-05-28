@@ -107,9 +107,9 @@
 **目前持有（2026-05-29）：**
 1. CF Global API Key — 完整权限
 2. CF API Token — Workers 管理
-3. GitHub Token — `ghu_[REDACTED]`
-4. DeepSeek API Key — `sk-[REDACTED]`（余额 62.12 CNY）
-5. **TG Bot Token** — `BOT_TOKEN_[REDACTED]`（opustwin_bot，t.me/opustwin_bot）
+3. GitHub Token — `[存于 .secrets.gpg]`
+4. DeepSeek API Key — `[存于 .secrets.gpg]`（余额 62.12 CNY）
+5. **TG Bot Token** — `[存于 .secrets.gpg]`（opustwin_bot，t.me/opustwin_bot）
    - 用途：Telegram 终端入口，CC Switch 或独立 bot 脚本接入
    - 来源：tc 提供，已在 WSL 端使用
 

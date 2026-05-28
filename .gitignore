@@ -35,3 +35,8 @@ claude_proc.txt
 relay_forwarder.lock
 relay_tcp.lock
 .secrets
+
+# Secrets - encrypted version only (.secrets.gpg)
+.secrets
+*.secrets
+!.secrets.gpg

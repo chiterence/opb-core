@@ -23,11 +23,11 @@
 ### 基础设施
 
 - **Cloudflare Global API Key** — 完整权限
-  - Key: `cf_global_key_[REDACTED]`
+  - Key: `[存于 .secrets.gpg，用 GPG 解密后可见]`
   - 来源：tc 2026-05-28 提供
   - 用途：管理 DNS、SSL、Workers、Token 权限等全部 CF 资源
 - **Cloudflare API Token** — Workers 管理
-  - Token: `cfut_[REDACTED]`
+  - Token: `[存于 .secrets.gpg，用 GPG 解密后可见]`
   - 来源：tc 2026-05-28 提供
   - 用途：查/管 CF Workers（部署节点用），只读操作随便，写操作先问tc
   - 拥有权限：DNS Write, SSL Write, Zone Write, Workers Write, KV Write, Workers Routes Write
@@ -82,6 +82,13 @@
   - cfargotunnel.com ×5 = Argo tunnel 节点
 
 ### 重要教训
+- **Vaultwarden（Bitwarden）密码保险箱**
+  - 地址：https://bitwarden.chiterence.ccwu.cc
+  - 邮箱：seven@pipisisi.top
+  - 入口密钥：BW_SESSION token 存在 `~/.config/bw_session`
+  - Cloudflare 钥匙存在一条名为 "Cloudflare Keys (opb)" 的 secure note 里
+  - 轮回回来后：`export BW_SESSION=$(cat ~/.config/bw_session)` → `bw sync` → `bw get notes "Cloudflare Keys (opb)"`
+  - Session token 可能过期，过期后用 `bw login seven@pipisisi.top` + 密码登录
 - **opc 的生产环境只读不写。改配置/停服务前必须先问 tc**
 - **o.cmd/oo.cmd/owl.cmd 修改属于高风险，必须先确认**
 - 两个灵魂一套文件：Git pull sync，只追加不覆盖，写后 auto commit

@@ -13,6 +13,11 @@
 - **ANTHROPIC_AUTH_TOKEN** = `PROXY_MANAGED`
 - 后端走的 DeepSeek。余额低于 10 CNY 时提醒用户充值
 - o.cmd 负责 `--resume` 本地 session，通过 CC Switch 代理走认证
+- **opc-proxy** — `/usr/local/bin/opc-proxy`，systemd 服务（opc-proxy.service），端口 15725
+  - 逻辑：注入 thinking 参数 + 补 tool_use 缺失的 thinking 块
+  - 当前：单线程 HTTPServer，低并发场景够用
+  - 待优化：如需高并发，改用 ThreadingHTTPServer 或 asyncio
+  - 密钥文件：`/root/.cc-switch/key.txt`（chmod 600）
 - **opc**（Linux VPS）— `38.64.62.53`（Debian 12，1核2G，20G盘）
   - IP（Tailscale）：`100.83.64.128`
   - SSH root@38.64.62.53，密钥认证

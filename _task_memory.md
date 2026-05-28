@@ -81,14 +81,39 @@
   - 51.79.255.92 = 新加坡节点（sg）
   - cfargotunnel.com ×5 = Argo tunnel 节点
 
-### 重要教训
-- **Vaultwarden（Bitwarden）密码保险箱**
-  - 地址：https://bitwarden.chiterence.ccwu.cc
-  - 邮箱：seven@pipisisi.top
-  - 入口密钥：BW_SESSION token 存在 `~/.config/bw_session`
-  - Cloudflare 钥匙存在一条名为 "Cloudflare Keys (opb)" 的 secure note 里
-  - 轮回回来后：`export BW_SESSION=$(cat ~/.config/bw_session)` → `bw sync` → `bw get notes "Cloudflare Keys (opb)"`
-  - Session token 可能过期，过期后用 `bw login seven@pipisisi.top` + 密码登录
+### 钥匙架构（2026-05-29 确立）
+
+**原则：**
+1. 人类不该记住密码（这是钥匙被设计出来的目的）
+2. 钥匙链必须自愈（外网挂了本地还能用）
+3. 别问 tc"密码是多少"——去该取的地方取
+4. 任何钥匙问题搞懂后记下来
+
+**双轨制：**
+| 层级 | 位置 | 优点 | 缺点 |
+|------|------|------|------|
+| **BW 远端** | `bitwarden.chiterence.ccwu.cc` | 浏览器插件随时看 | 域名/服务器/SSL 任何一个挂了就断 |
+| **`.opb_keys` 本地** | `~/.opb_keys`（chmod 600） | 无依赖，source 就能用 | 不是真正的密码库（明文） |
+
+**两条路都要更新：** 每次拿到新钥匙，BW 和 `.opb_keys` 都写。
+
+**BW 操作手册：**
+- 地址：https://bitwarden.chiterence.ccwu.cc
+- 邮箱：seven@pipisisi.top
+- Master 密码：`~/.bw_key`（chmod 600）
+- 解锁：`source ~/.bw_key && bw login --passwordenv BW_PASS 2>/dev/null && export BW_SESSION=$(bw unlock --passwordenv BW_PASS | grep -oP 'export BW_SESSION="\K[^"]+') && bw sync`
+- 核心条目：`Cloudflare Keys (opb)`（Secure Note，四个字段）
+
+**目前持有（2026-05-29）：**
+1. CF Global API Key — 完整权限
+2. CF API Token — Workers 管理
+3. GitHub Token — `ghu_[REDACTED]`
+4. DeepSeek API Key — `sk-[REDACTED]`（余额 62.12 CNY）
+5. **TG Bot Token** — `BOT_TOKEN_[REDACTED]`（opustwin_bot，t.me/opustwin_bot）
+   - 用途：Telegram 终端入口，CC Switch 或独立 bot 脚本接入
+   - 来源：tc 提供，已在 WSL 端使用
+
+**GPG 已废弃：** WSL pinentry agent 对不上，修过没用。不可用就是不可用，不修。别碰 `.secrets.gpg`。
 - **opc 的生产环境只读不写。改配置/停服务前必须先问 tc**
 - **o.cmd/oo.cmd/owl.cmd 修改属于高风险，必须先确认**
 - 两个灵魂一套文件：Git pull sync，只追加不覆盖，写后 auto commit

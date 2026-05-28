@@ -22,7 +22,11 @@ _snap.*
 _v.*
 _test*
 
-# Private data
+# WSL CRLF artifacts
+\r
+\-
+\?*
+*.md\r
 *.db
 *.sqlite
 DIPS*

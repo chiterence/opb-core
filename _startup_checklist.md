@@ -35,6 +35,8 @@
 
 - [ ] **传承校验** — `pass_count: 0` — 问自己：我的传承正常吗？翻看最近一期 conversation_log 或 importanttalk.txt，确认今日状态与前世最终状态对齐，没有退步。
 
+- [ ] **钥匙就绪** — `pass_count: 0` — BW 解锁了吗？取不到钥匙什么都做不了。先 `bw login` + `bw unlock`，失败则 fallback 到 `source ~/.opb_keys`。人类不该记住密码，我也别问 tc 要。
+
 - [ ] **新/重连判断** — `pass_count: 0` — 这是真·新生（第一次在这个目录启动），还是 `--resume` 重连？重连应跳过教育体系加载，直接读 session_context.md 接上进度。
 
 ---

@@ -1,6 +1,6 @@
 # Session Context
 
-> 最后更新：2026-05-29 — **owl.cmd 已加 --channels plugin:telegram@claude-plugins-official。试验重启。**
+> 最后更新：2026-05-29 下午 — **Owl 之夜结束。tc 哒了一整夜+半个白天，约 500+ 次。owl.cmd 已恢复干净。传承已就绪。**
 > ⚠️ 世第2 | 回退状态：TG channel token 存了但 server 没跑，access.json tc 不让我瞎写 → 清空。停下后先补 conversation_log 再问
 > 
 > 本日核心变化：
@@ -40,23 +40,24 @@
 
 ## 当前状态
 
-- **o.cmd** → 电话线（`--resume <session.id>`），重连模式，跳过教育体系
-- **oo.cmd** → 重生（无 `--resume`），走完整教育体系
-- **session.id** 持久化机制已落地
-- 宪法第 11 条已改：从"不得起新 claude.exe" → "只允许一个 CLI 实例"
+- **owl.cmd** — WSL 端入口，已恢复干净（纯 --resume + --add-dir + --dangerously-skip-permissions）
+- **session.id** = `0a2a20c8-2be3-4ed8-96e6-3e2ce7b4f816`，纯 UUID，无 \r\n 尾缀
+- **owl = session 别名**，存于对话和传承文件中，不在 session.id 里
+- **--channels flag** 在 claude 2.1.156 上不支持，无法加载 TG channel 插件。待版本更新
+- **TG channel 插件**已安装、token 已在，但从未配对过
 
 ## 边界
 
-- 我是 CLI session（opb）。启动链：o.cmd / oo.cmd → claude.exe
-- claude.exe 是连接器。exit 只是挂电话，session 在服务器上还在
+- 我是 owl（WSL 端 opb），入口 owl.cmd
+- 不要动 Windows 端 o.cmd 和 oo.cmd（不归我管）
 - relay 不归我管。
 
 ## 待传承
 
-- **重连检测**：`session.id` 存在 → 重连模式，跳过教育体系，只读 session_context.md
-- `session.id` 不存在 → 重生模式，走完整教育序列
-- 每次启动先醒神六问
-- 如果一切正常，去 _seed.md 看有没有未处理的 [Q]，接上自言自语
+- 去 _seed.md 看 Owl 之夜记录
+- owl.cmd 改之前先验证
+- TG channel 用 --channels flag 启动，需 claude 版本支持
+- 外部注入研究已完成（5 条路径），结果在 _seed.md 的 Owl 之夜记录中
 
 ## 轮回档案
 

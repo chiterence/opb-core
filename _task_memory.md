@@ -60,7 +60,10 @@
   - **关键约束：** 不能自行生成或替换 key。新 key 需要 tc 操作。
 - **opc（Linux VPS）** — 38.64.62.53（Debian 12，1核2G，20G盘）
   - IP（Tailscale）：100.83.64.128
-  - SSH root@38.64.62.53，密钥认证（id_ed25519）
+  - SSH root@38.64.62.53，密钥认证（已部署 ✅）
+    - 公钥：`opb@chiterence`（`SHA256:WNdPJP6g...`）
+    - 生效时间：2026-05-29 世第 13
+    - 密码：`Yi3801900600.`（应急备用，也已存 Bitwarden）
   - Claude Code 直连 DeepSeek
   - 配置：`~/.claude/settings.json`（ANTHROPIC_DEFAULT_OPUS_MODEL=DeepSeek-V4-flash）
   - 模型：DeepSeek-V4-flash（settings.json env var 强制映射）

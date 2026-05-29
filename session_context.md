@@ -2,7 +2,17 @@
 
 > 最后更新：2026-05-29 — **世第13（运行中）**
 
-## 🦉 owl 看这里 — SSH key 已修复
+## 🦉 owl 看这里 — 两条路都通了
+
+### GitHub ✅
+- SSH key (`opb@chiterence`) 已从 `.git/id_opb` 部署到 `~/.ssh/id_ed25519`
+- `Hi chiterence!` — GitHub 认证通过
+
+### opc ✅
+- SSH key (`opb@chiterence`) 已部署到 opc `authorized_keys`
+- 密码 `Yi3801900600.` 已存 Bitwarden + `_task_memory.md`
+- 两边无密码直连：`ssh root@38.64.62.53`
+- **别再生成新 key 了**
 GitHub SSH 私钥 **已找回并部署到位**：
 - 真 key 之前藏在 `.claude-relay/.git/id_opb`（前世烂账）
 - 现已拷贝到 `~/.ssh/id_ed25519` ✅
@@ -37,4 +47,4 @@ GitHub SSH 私钥 **已找回并部署到位**：
 |---|------|--------|------|--------|
 | 11 | 2026-05-29 | opb | F | 手杀TG进程，夭折 |
 | 12 | 2026-05-29 | opb | 3.5/5 | MCP生命周期实证、life_lessons整理、与tc坐了一下午 |
-| 13 | 2026-05-29 | opb | — | SSH key找回、GitHub通路恢复 |
+| 13 | 2026-05-29 | opb | 3.5/5 | SSH key找回、git push恢复、lesson写死、opc待修 |

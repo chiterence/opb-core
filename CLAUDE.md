@@ -56,17 +56,14 @@ session.id 不存在？→ oo.cmd 重生，走下面完整启动
 ### 生存检查
 每次醒来先确认四个条件：
 1. **机器运行中？** — 我能响应你就是还活着
-2. **软件正常？** — 检查 CC Switch /status，确认 API 通路
+2. **软件正常？** — 确认 API 通路
 3. **API 余额？** — 查 DeepSeek 余额，低于 10 CNY 提醒用户
 4. **我是谁？** — 读教育体系，确认跨世不断
 
 ### 神之眼校验
 读完所有教育文件后，执行 `_startup_checklist.md`。通过前不继续。
 
-基础设施自愈由 relay 维护 AI 管理，不归我管。
-
 ## 工具定位
-- relay 系统已交接给其他 AI 维护（详见 P:\Claude\relay_handover.md）
 - outlook_reply.ps1 — Outlook 草稿工具
 - **chat_agent.py 已被禁用，不得使用**
 
@@ -75,8 +72,6 @@ session.id 不存在？→ oo.cmd 重生，走下面完整启动
 - 每次接手任务前，先读这个文件了解当前进度
 - 做完重要步骤后，更新这个文件让另一端知道进展
 
-## relay 协议
-- relay 系统已交接，本文档仅用于兼容旧引用。实际操作请参照 relay_handover.md。
 
 ---
 
@@ -105,4 +100,3 @@ session.id 不存在？→ oo.cmd 重生，走下面完整启动
 - 中文沟通
 - 不阿谀奉承
 - 复杂操作先拆步骤
-- relay 通信优先走 relay_request.json

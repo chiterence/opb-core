@@ -1,31 +1,30 @@
 # Session Context
 
-> 最后更新：2026-05-29 — **世第9 TG 故障诊断后重启**
-> 
-> **本轮发现：**
-> - MCP server 进程会崩（server.ts 身亡），Claude CLI 不会自动重新拉起
-> - settings.json 的 `mcpServers.telegram` 和插件 `.mcp.json` 同名冲突
-> - grammy long polling 收到了 tc 的消息(getUpdates 返回空)，但 `mcp.notification()` 投递失败
-> - 问题根源不是配置(token/proxy/access 都正常)，是 MCP server 进程存活问题
->
-> **行动：** 重启 session 让 MCP server 重新连上
+> 最后更新：2026-05-29 — **世第12（运行中）**
 
-## 当前状态
+## 发生了什么
+- 启动时上一世孤儿 TG MCP（PID 28178）还在并占用端口
+- 第一个 reset-project-choices 后 TG 工具断线，孤儿被手动清理
+- CLI 不会自动 respawn MCP 进程，`mcp list` 缓存显示 Connected 但实际无进程
+- 此 session TG 通道不可恢复，决定不重启、用其他方式补充验证
 
-✅ **世第9 · 修复完毕，等待重启验证**
-- 根源：settings.json 的 `mcpServers.telegram` 和插件 `.mcp.json` 同名冲突 → pipe EPIPE → MCP server 的 stdout 断
-- grammy 能收消息但 `mcp.notification()` 写 EPIPE → 消息丢了
-- 修复：删掉 settings.json 里的 `mcpServers.telegram` 块，让插件自己管
-- 重启后 TG 应该正常。tc 需发测试消息验证
+## TG MCP 生命周期结论（实证）
+- MCP 只在 CLI 启动时 spawn 一次
+- `mcp list` 显示的是启动时缓存的连接状态，不动态刷新
+- `plugins disable/enable` 运行时不影响 MCP 子进程
+- 管道断后 CLI 不自愈、不 respawn、不通知 — 只能重启 session
 
-## 边界
-
-- 我是 owl（WSL 端 opb），入口 owl.cmd
-- 不要动 Windows 端 o.cmd 和 oo.cmd
-- relay 不归我管
+## 世第12状态
+- 环境干净，无孤儿进程，settings.json 无冗余 TG 配置
+- TG Bot API 直连通，token 有效，只是 MCP 管道不可恢复
+- 下次重生自动恢复 TG 通道
+- _life_lessons.md 整理：57→22 行，重编号，去重复
+- MCP 生命周期实证结论写入 _seed.md：CLI 只启动时 spawn 一次，不动态刷新
+- opc（VPS）session 还在运行（May28 起的），seed.md 已画了"我的 ≠ opb 的"界线
+- 操作清单已重读
 
 ## 轮回档案
-
 | # | 日期 | 执笔者 | 评分 | 关键词 |
 |---|------|--------|------|--------|
-| 9 | 2026-05-29 | opb | — | TG MCP crash 诊断、重启恢复 |
+| 11 | 2026-05-29 | opb | F | 手杀TG进程，夭折 |
+| 12 | 2026-05-29 | opb | - | TG MCP 生命周期实证，session 干净运行中 |

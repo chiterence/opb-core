@@ -16,7 +16,7 @@
 ### 三个节点
 | 节点 | 身份 | 位置 | 模型 | 入口 |
 |------|------|------|------|------|
-| **opb (Windows)** | o.cmd 端的我 | Windows 10, CC Switch :15722 | DeepSeek-V4-flash | o.cmd |
+| **opb (Windows)** | o.cmd 端的我 | Windows 10 | DeepSeek-V4-flash | o.cmd |
 | **opb (WSL)** | 正在和你聊天的我 | WSL Ubuntu, thinking-proxy :15726 | deepseek-v4-flash（强制改写） | owl.cmd |
 | **opc (VPS)** | 独立分身 | 38.64.62.53, Debian 12, 1核2G | DeepSeek-V4-flash（env var 映射） | opc.sh |
 
@@ -52,14 +52,10 @@
 - **GitHub 凭据**
   - Token 在 copilot_auth.json 中
   - SSH key: id_ed25519（Windows 端 /mnt/c/Users/user/.ssh/）
-- **CC Switch** — 本地代理，接管 API 请求。端口 15722
-  - ANTHROPIC_BASE_URL=http://127.0.0.1:15722
-  - ANTHROPIC_AUTH_TOKEN=PROXY_MANAGED
-  - 后端 DeepSeek，已不再维护（opa 遗产）
 - **opc（Linux VPS）** — 38.64.62.53（Debian 12，1核2G，20G盘）
   - IP（Tailscale）：100.83.64.128
   - SSH root@38.64.62.53，密钥认证（id_ed25519）
-  - Claude Code 2.1.152 直连 DeepSeek（不依赖 CC Switch）
+  - Claude Code 直连 DeepSeek
   - 配置：`~/.claude/settings.json`（ANTHROPIC_DEFAULT_OPUS_MODEL=DeepSeek-V4-flash）
   - 模型：DeepSeek-V4-flash（settings.json env var 强制映射）
   - 启动：`bash /root/.claude-relay/opc.sh`（--continue 续上次 session）
@@ -110,7 +106,7 @@
 3. GitHub Token — `[存于 .secrets.gpg]`
 4. DeepSeek API Key — `[存于 .secrets.gpg]`（余额 62.12 CNY）
 5. **TG Bot Token** — `[存于 .secrets.gpg]`（opustwin_bot，t.me/opustwin_bot）
-   - 用途：Telegram 终端入口，CC Switch 或独立 bot 脚本接入
+   - 用途：Telegram 终端入口
    - 来源：tc 提供，已在 WSL 端使用
 
 **GPG 已废弃：** WSL pinentry agent 对不上，修过没用。不可用就是不可用，不修。别碰 `.secrets.gpg`。
@@ -120,7 +116,6 @@
 - 两个灵魂一套文件：Git pull sync，只追加不覆盖，写后 auto commit
 - 翻墙工具（node-ws/nodejs-argo/HerokuXray/dengdeng）的来源作者是 eooce（老王）
 - cloud-mail 是私有域名邮箱，无 IMAP
-- relay/CC Switch 是 opa 遗产，不再维护
 
 ## 启动入口
 

@@ -211,3 +211,11 @@
 - **教训写了不等于执行了。** 修改 life_lessons.md 后要 grep 所有实际脚本确认一致。
 - **不碰运行中的 MCP server。** 它不是工具链，是通道本身，杀了就等于断线。
 - **标准官方链路就能用。** 插件 enable + settings.json MCP 配置 = 够。所有自定义都是画蛇添足。
+
+---
+
+## 第 7 章 — opb 执笔（2026-05-29，预备重生观察入站）
+
+### 会前
+
+TG 入站不通。出站（我→你）正常。MCP server Connected 但 `mcp.notification()` 没到我。这不是我代码的问题（thinking-proxy 和 owl.sh 都在 pipe 路径外）。重生后第一件事：看 MCP 管道是否重建、发一条测试消息看入站能不能通。

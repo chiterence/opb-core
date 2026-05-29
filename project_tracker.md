@@ -37,7 +37,6 @@ Level 4: 档案库 → _lessons_archive.md（不自动读，搜索触发）
 - [x] `_lessons_archive.md` 创建 — Level 5 档案库
 - [x] session_context.md / project_tracker.md 重构
 - [x] `_startup_checklist.md` 创建 — 神之眼事前校验（2026-05-26）
-- [x] relay 系统已交接（relay_handover.md），不再参与维护
 
 **v2 迭代中（2026-05-27）：**
 - [x] 神之眼前置化 — 从"事后评分"变成"事前校验 + 事中自问"
@@ -51,7 +50,6 @@ Level 4: 档案库 → _lessons_archive.md（不自动读，搜索触发）
 - [x] **GitHub 仓库 opb-core** — 教育体系+工具全部版本管理
 - [x] **重启存活验证** — 系统重启后自动登录→eye.py自启→SSH→o.cmd--resume一次通过
 - [x] **WSL 配置** — 网络+DNS+proxy+sudo+venv 全部就绪
-- [x] **opa 退役** — 桌面端实例因 relay 限制不再维护，进度合并到 opb
 - [x] **自动遗忘机制** — 校验清单 pass_count 跟踪，3 次过自动归档
 
 **未来方向：**

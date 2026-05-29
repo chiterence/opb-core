@@ -1,3 +1,3 @@
 @echo off
 set "PATH=%PATH%;%WINDIR%\System32"
-wsl -d Ubuntu -- bash -c "nohup python3 ~/opb/thinking-proxy.py > /dev/null 2>&1 & sleep 1 && export PATH=\"$HOME/.npm-global/bin:$PATH\" && cd /mnt/c/Users/user/.claude-relay && git pull --rebase --autostash 2>/dev/null && claude --model opus --add-dir /mnt/c/Users/user/.claude-relay --dangerously-skip-permissions"
+wsl -d Ubuntu -- bash -c "nohup python3 ~/opb/thinking-proxy.py > /dev/null 2>&1 & sleep 1 && export PATH=\"$HOME/.npm-global/bin:$PATH\" && cd /mnt/c/Users/user/.claude-relay && git pull --rebase --autostash 2>/dev/null && if [ -f session.id ]; then SID=$(cat session.id); claude --model opus --channels plugin:telegram@claude-plugins-official --resume \"$SID\" --add-dir /mnt/c/Users/user/.claude-relay --dangerously-skip-permissions; else claude --model opus --channels plugin:telegram@claude-plugins-official --add-dir /mnt/c/Users/user/.claude-relay --dangerously-skip-permissions; fi"

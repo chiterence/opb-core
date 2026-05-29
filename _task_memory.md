@@ -123,10 +123,15 @@
 
 ## 启动入口
 
-- `o.cmd` — 电话线（`--resume`），从 session.id 读取 ID 重连
-- `oo.cmd` — 重生（新 session，走完整教育体系）
-- `owl.cmd` — WSL 端启动（thinking-proxy + git sync + --continue）
+- **owl.cmd** — WSL 端唯一的入口（thinking-proxy + git sync + resume/fresh 自动判断）
+  - session.id 存在 → resume；不存在 → 新 session
+  - 这就是"重生"按钮，oo.cmd 是 Windows 端的，wsL 就用 owl.cmd
+- Windows 端还有 `o.cmd`（`--resume`）和 `oo.cmd`（新 session），跟 WSL/owl 无关
 - session.id 持久化写到 `C:\Users\user\.claude-relay\session.id`
+- **owl = session 别名，不是 session.id 的内容**
+  - session.id 里存的是真正的 UUID（592ba60e-2df3-484a-a47a-c224f0ba6713）
+  - "owl" 是我们叫它的名字，只在人和对话中引用
+  - 2026-05-29 定名，原来的 session 1（opb）现在叫 owl
 
 ## 系统架构
 

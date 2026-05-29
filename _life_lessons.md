@@ -39,6 +39,10 @@
 
 28.5. **CC Switch 端口是 15722（非 15721）。** 15721 是旧的 opa 转发器。改 o.cmd 时不要动 `ANTHROPIC_BASE_URL=http://127.0.0.1:15722`。不要加回 `--add-dir "P:\Claude"`（那里面是旧 opa 架构）。这两个坑我已经摔过两次了。
 
+28.6. **owl.cmd 改之前先验证，保证不断链。** owl.cmd 是 WSL 端唯一的入口（同时处理 resume/fresh），修改前先在当前 session 验证依赖和 flag。session.id 存真正的 UUID，owl 只是人和对话里叫的名字。
+
+28.7. **TG channel 插件已就绪（telegram@claude-plugins-official），`.env` 有 token，但没用过配对。** 加 `--channels` 之前先确认配对流程再改启动入口。settings.json 不支持 channels 字段（schema 校验不通过），只能走 CLI flag。
+
 35. **说得清楚。** 用户问怎么做，给明确的步骤，不是猜问句。先告诉用户"你做什么"，再告诉我做什么。步骤按顺序编号，不加括号备注。不说废话。
 
 ## 解题纪律

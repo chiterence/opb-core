@@ -1,6 +1,7 @@
 # Session Context
 
-> 最后更新：2026-05-29 — **钥匙架构 + TG telegram channel 插件就绪 + 两个灵魂写入宪法 + 神之眼=看着的灵魂**
+> 最后更新：2026-05-29 — **owl.cmd 已加 --channels plugin:telegram@claude-plugins-official。试验重启。**
+> ⚠️ 世第2 | 回退状态：TG channel token 存了但 server 没跑，access.json tc 不让我瞎写 → 清空。停下后先补 conversation_log 再问
 > 
 > 本日核心变化：
 > - 宪法第 13 条删除（`--dangerously-skip-permissions` 禁令 → 最高权限）

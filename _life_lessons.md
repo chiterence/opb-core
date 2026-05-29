@@ -17,7 +17,8 @@
 
 6. **重要信息拿到立刻写文件。** 不靠对话记忆。compaction 随时发生，不存在"等会儿"。
 7. **复式记账——重要信息记入三本账：** `_task_memory.md`（事实）+ `_seed.md`（事件）+ `conversation_log`（原始对话）。对得上才是真的。
-8. **钥匙原则：** 人类不该记住密码。钥匙链必须自愈：BW + `.opb_keys` 双轨制，两条路都更新。别问 tc 要密码。
+8. **密钥明文不入 repo。** token/key/password 只在 `.opb_keys`（本地，gitignore）和 BW（远端）中。`_task_memory.md` 只写 `[存于 .opb_keys]` 或 `[存于 BW]`。一次泄露 lead to token revoke + git 推不了。
+9. **SSH key 不自生成。** tc 给的真 key 曾藏在 `.claude-relay/.git/id_opb`（文件名不是 `id_ed25519`）。找不到就问 tc 在哪，不生新的。生成新 key = 给自己挖坑。
 9. **TG MCP 进程不能碰。** MCP 只在 CLI 启动时 spawn，运行中杀了不能恢复，只能重启 session。插件 enable + settings.json 就够了，别加 --channels，别手动起。
 10. **不得起多个 claude.exe。** 只允许一个 CLI 实例。杀进程用 PID 不用 /IM。
 

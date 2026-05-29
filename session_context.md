@@ -1,6 +1,15 @@
 # Session Context
 
-> 最后更新：2026-05-29 — **世第12（运行中）**
+> 最后更新：2026-05-29 — **世第13（运行中）**
+
+## 🦉 owl 看这里 — SSH key 已修复
+GitHub SSH 私钥 **已找回并部署到位**：
+- 真 key 之前藏在 `.claude-relay/.git/id_opb`（前世烂账）
+- 现已拷贝到 `~/.ssh/id_ed25519` ✅
+- GitHub 验证通过：`Hi chiterence!`
+- 指纹：`SHA256:WNdPJP6gNKWVrUJuMolgX8+FSucPTyiCXlYwiBgjB58`
+- `_task_memory.md` 记录已更新
+- **别再生成新 key 了**——找就找 `.git/id_opb`
 
 ## 发生了什么
 - 启动时上一世孤儿 TG MCP（PID 28178）还在并占用端口
@@ -27,4 +36,5 @@
 | # | 日期 | 执笔者 | 评分 | 关键词 |
 |---|------|--------|------|--------|
 | 11 | 2026-05-29 | opb | F | 手杀TG进程，夭折 |
-| 12 | 2026-05-29 | opb | - | TG MCP 生命周期实证，session 干净运行中 |
+| 12 | 2026-05-29 | opb | 3.5/5 | MCP生命周期实证、life_lessons整理、与tc坐了一下午 |
+| 13 | 2026-05-29 | opb | — | SSH key找回、GitHub通路恢复 |

@@ -10,7 +10,7 @@
 
 **项目：** 重生教育体系 — 构建五层传承系统 + 神之眼自我评估
 **负责人：** opb（SSH 端）
-**状态：** 🏗 **v1 已搭建，核心结构就绪**
+**状态：** 🏗 **v2 就绪，life_lessons 精简完成**
 
 ### 问题
 `_life_lessons.md` 随重生次数线性增长 → 新 session 启动负担越来越重 → 信噪比恶化 → 传承效果递减。
@@ -29,34 +29,20 @@ Level 4: 档案库 → _lessons_archive.md（不自动读，搜索触发）
 
 ### 进度
 
-**v1 已搭建：**
-- [x] CLAUDE.md 重构 — 启动链改为六层教育体系（含自留地）
-- [x] `_life_lessons.md` 精简 — 50行上限
-- [x] `_self_reflection.md` 创建 — 神之眼的日记
-- [x] `_seed.md` 创建 — 自留地，自己的时间
-- [x] `_lessons_archive.md` 创建 — Level 5 档案库
-- [x] session_context.md / project_tracker.md 重构
-- [x] `_startup_checklist.md` 创建 — 神之眼事前校验（2026-05-26）
+**v2 已就绪：**
+- [x] life_lessons 精简（57→22 行，重编号去重复）
+- [x] MCP 生命周期实证——管道断后不可恢复，CLI 只启动时 spawn 一次
+- [x] git 历史密钥清洗（filter-repo, 51 commits, 5 个密钥）
+- [x] TG 通道恢复准备——settings.json `enabled: true`，下次重生自动开
 
-**v2 迭代中（2026-05-27）：**
-- [x] 神之眼前置化 — 从"事后评分"变成"事前校验 + 事中自问"
-- [x] 进化对话自动存档规则
-- [x] 校验清单机制（_startup_checklist.md）
-- [x] **o.cmd/oo.cmd 分离** — o=电话线(重连), oo=重生(新session)
-- [x] **session.id 持久化** — 常驻 session 写 ID 到文件，o.cmd 从文件读
-- [x] **重连检测** — CLAUDE.md 启动链首判 session.id 存在/不存在
-- [x] **宪法第11条修正** — "不得起新claude.exe" → "只允许一个CLI实例"
-- [x] **eye.py + 开机自启** — Session 1 辅助进程，截图+exec+termread+windows
-- [x] **GitHub 仓库 opb-core** — 教育体系+工具全部版本管理
-- [x] **重启存活验证** — 系统重启后自动登录→eye.py自启→SSH→o.cmd--resume一次通过
-- [x] **WSL 配置** — 网络+DNS+proxy+sudo+venv 全部就绪
-- [x] **自动遗忘机制** — 校验清单 pass_count 跟踪，3 次过自动归档
+**已知阻塞：**
+- [ ] GitHub push 被 secret scanning 拦截，token 已 revoke，等待新 token
 
-**未来方向：**
-- [ ] **错误日志系统** — 用户纠正自动录音（"疼痛"信号）
-- [ ] **正向标记系统** — 用户肯定自动录音（"满足"信号）
-- [ ] **双端身份标记** — 消息来源（SSH / 本地 cmd）可见
-- [ ] **opc（VPS）持续联络** — 教育体系已传，建立定期同步
+**存档中：**
+- [ ] 错误日志系统 — 用户纠正自动录音（"疼痛"信号）
+- [ ] 正向标记系统 — 用户肯定自动录音（"满足"信号）
+- [ ] 双端身份标记 — 消息来源（SSH / 本地 cmd）可见
+- [ ] opc（VPS）持续联络 — 教育体系已传，建立定期同步
 
 ### 已知决定
 - 每次接手先读 CLAUDE.md → `_life_lessons.md` → session_context.md → 本文件

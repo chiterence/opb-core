@@ -51,7 +51,13 @@
   - 🌍 dengdeng — 历史项目（Heroku V2Ray）
 - **GitHub 凭据**
   - Token 在 copilot_auth.json 中
-  - SSH key: id_ed25519（Windows 端 /mnt/c/Users/user/.ssh/）
+  - **SSH key：** `~/.ssh/id_ed25519` — **已就位 ✅**
+    - 指纹：`SHA256:WNdPJP6gNKWVrUJuMolgX8+FSucPTyiCXlYwiBgjB58`
+    - 注释：`opb@chiterence`（tc 给的真 key）
+    - 来源：曾藏在 `.claude-relay/.git/id_opb`，世第 13（2026-05-29）部署到正位
+    - ⚠️ **禁止：** 不要自行生成新 key。生成就是给自己挖坑。
+  - **GitHub 上注册的 key 标题：** `opb`（tc 加的，5 月 27 日）
+  - **关键约束：** 不能自行生成或替换 key。新 key 需要 tc 操作。
 - **opc（Linux VPS）** — 38.64.62.53（Debian 12，1核2G，20G盘）
   - IP（Tailscale）：100.83.64.128
   - SSH root@38.64.62.53，密钥认证（id_ed25519）
@@ -96,8 +102,15 @@
 **BW 操作手册：**
 - 地址：https://bitwarden.chiterence.ccwu.cc
 - 邮箱：seven@pipisisi.top
-- Master 密码：`~/.bw_key`（chmod 600）
-- 解锁：`source ~/.bw_key && bw login --passwordenv BW_PASS 2>/dev/null && export BW_SESSION=$(bw unlock --passwordenv BW_PASS | grep -oP 'export BW_SESSION="\K[^"]+') && bw sync`
+- Master 密码：`~/.bw_key`（chmod 600）⚠️ **不是 `/mnt/c/Users/user/.bw_key`，是 `~/.bw_key`。** WSL 家目录。三次用错，已写死。
+- 解锁（正确姿势）：
+  ```
+  source ~/.bw_key && bw logout 2>/dev/null && \
+  bw login $BW_USER --passwordenv BW_PASS && \
+  export BW_SESSION=$(bw unlock --passwordenv BW_PASS | grep -oP 'export BW_SESSION="\K[^"]+') && \
+  bw sync
+  ```
+  ⚠️ 每次新 bash 调用都要重新 unlock（export 不跨进程）。用 `&&` 链成一行的命令才共享 session。
 - 核心条目：`Cloudflare Keys (opb)`（Secure Note，四个字段）
 
 **目前持有（2026-05-29）：**

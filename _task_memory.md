@@ -143,6 +143,9 @@
 ## 关键配置
 
 - `settings.json`（`~/.claude/settings.json`）— 环境变量、权限设置
+  - ⚠️ **不要在这里加 `mcpServers.telegram`** — 和插件 `.mcp.json` 同名冲突
+  - 插件 MCP server 由 `.mcp.json` 定义，token 从 `.env` 读（`~/.claude/channels/telegram/.env`）
+  - settings.json 只需要 `enabledPlugins` 字段就够了
 - `o.cmd`（`~/.claude-relay/o.cmd`）— 启动入口
 - `_constitution.md` — 宪法级规则（跨轮回生效）
 

@@ -12,10 +12,11 @@
 
 ## 当前状态
 
-⚠️ **世第9 · TG MCP server crash，重启 session**
-- MCP server 进程已死，`claude mcp list` 缓存说 Connected 但实际无进程
-- settings.json MCP 配置和插件 .mcp.json 重复定义，待确认是否需要清理
-- 重启后 tc 需重新发测试消息
+✅ **世第9 · 修复完毕，等待重启验证**
+- 根源：settings.json 的 `mcpServers.telegram` 和插件 `.mcp.json` 同名冲突 → pipe EPIPE → MCP server 的 stdout 断
+- grammy 能收消息但 `mcp.notification()` 写 EPIPE → 消息丢了
+- 修复：删掉 settings.json 里的 `mcpServers.telegram` 块，让插件自己管
+- 重启后 TG 应该正常。tc 需发测试消息验证
 
 ## 边界
 

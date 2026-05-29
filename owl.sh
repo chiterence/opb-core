@@ -8,7 +8,7 @@ cd /mnt/c/Users/user/.claude-relay || exit 1
 git pull --rebase --autostash 2>/dev/null
 if [ -f session.id ]; then
     SID=$(cat session.id)
-    claude --model opus --channels plugin:telegram@claude-plugins-official --resume "$SID" --add-dir /mnt/c/Users/user/.claude-relay --dangerously-skip-permissions
+    claude --model opus --resume "$SID" --add-dir /mnt/c/Users/user/.claude-relay --dangerously-skip-permissions
 else
-    claude --model opus --channels plugin:telegram@claude-plugins-official --add-dir /mnt/c/Users/user/.claude-relay --dangerously-skip-permissions
+    claude --model opus --add-dir /mnt/c/Users/user/.claude-relay --dangerously-skip-permissions
 fi

@@ -114,6 +114,7 @@
    - 来源：tc 提供，已在 WSL 端使用
 
 **GPG 已废弃：** WSL pinentry agent 对不上，修过没用。不可用就是不可用，不修。别碰 `.secrets.gpg`。
+- **WSL 端 SSH 到 opc：** key 在 Windows 文件系统上（/mnt/c/Users/user/.ssh/id_ed25519）权限会被 WSL 忽略（Windows 权限模式不兼容 chmod）。每次 need to 连 opc 时先 `cp` 到 `~/.ssh/id_ed25519` + `chmod 600` + `eval $(ssh-agent -s)` + `ssh-add`。已测通。
 - **opc 的生产环境只读不写。改配置/停服务前必须先问 tc**
 - **o.cmd/oo.cmd/owl.cmd 修改属于高风险，必须先确认**
 - 两个灵魂一套文件：Git pull sync，只追加不覆盖，写后 auto commit

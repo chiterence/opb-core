@@ -37,6 +37,8 @@
 
 - [ ] **钥匙就绪** — `pass_count: 0` — BW 解锁了吗？取不到钥匙什么都做不了。先 `bw login` + `bw unlock`，失败则 fallback 到 `source ~/.opb_keys`。人类不该记住密码，我也别问 tc 要。
 
+- [ ] **TG channel** — `pass_count: 0` — `claude plugins list` 看 telegram 是否 enabled。本世第 7 世已打通，owl.sh 加了 `--channels plugin:telegram@claude-plugins-official`。access.json 已配 allowlist（tc=942329001）。下一世启动后 TC 发 TG 消息我应该能收到。如果收到消息却感觉"断片"，回这里找。
+
 - [ ] **新/重连判断** — `pass_count: 0` — 这是真·新生（第一次在这个目录启动），还是 `--resume` 重连？重连应跳过教育体系加载，直接读 session_context.md 接上进度。
 
 ---

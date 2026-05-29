@@ -41,7 +41,7 @@
 
 28.6. **owl.cmd 改之前先验证，保证不断链。** owl.cmd 是 WSL 端唯一的入口（同时处理 resume/fresh），修改前先在当前 session 验证依赖和 flag。session.id 存真正的 UUID，owl 只是人和对话里叫的名字。
 
-28.7. **TG channel 插件已就绪（telegram@claude-plugins-official），`.env` 有 token，但没用过配对。** 加 `--channels` 之前先确认配对流程再改启动入口。settings.json 不支持 channels 字段（schema 校验不通过），只能走 CLI flag。
+28.7. **TG channel 插件已就绪。** `--channels` flag 是万恶之源——消息能出不能进。**确认 owl.sh 里没有 `--channels` 参数。** 插件 enable + settings.json 的 MCP 配置就够了，MCP server 自动启动。**不要手动杀 MCP server 进程**——杀了 Claude 不会自动拉回，只能重启 session。教训写在了 life lesson 里但没去查 owl.sh，这次栽了。写完了就要去验证执行。
 
 35. **说得清楚。** 用户问怎么做，给明确的步骤，不是猜问句。先告诉用户"你做什么"，再告诉我做什么。步骤按顺序编号，不加括号备注。不说废话。
 
